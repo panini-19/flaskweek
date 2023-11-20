@@ -1,11 +1,13 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for, flash
 import requests
 from app import app
-from app.forms import pokeFormForm
-from app.forms import LoginForm
-from app.forms import SignupForm
+from app.forms import pokeFormForm, LoginForm, SignupForm
+from app.models import User, db
+from werkzeug.security import check_password_hash
+from flask_login import login_user, logout_user, current_user, login_required
 
 # Home
+@app.route('/')
 @app.route('/home')
 def homePage():
     return render_template('home.html')
@@ -37,13 +39,6 @@ def poke_form():
     else:
         return render_template('pokeForm.html', form=form)
     
-REGISTERED_USERS={
-    "ani@pokemon.org":{
-        "name": "Anthony Ni",
-        "password":"panini19"
-    }
-}
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm() 
@@ -51,8 +46,11 @@ def login():
         email = form.email.data
         password = form.password.data
 
-        if email in REGISTERED_USERS and REGISTERED_USERS[email]['password'] == password:
-            return f'Hello, {REGISTERED_USERS[email]["name"]}'
+        queried_user = User.query.filter(User.email == email).first()
+        if queried_user and check_password_hash(queried_user.password, password):
+            login_user(queried_user)
+            flash(f'Hello, {queried_user.first_name}!', 'success')
+            return redirect(url_for('homePage'))
         else:
             return 'Invalid email or password'
     else:
@@ -63,13 +61,24 @@ def login():
 def signup():
     form = SignupForm()
     if request.method == 'POST' and form.validate_on_submit():
-        full_name = f'{form.firstName.data} {form.lastName.data}'
+        firstName = form.firstName.data
+        lastName = form.lastName.data
         email = form.email.data
-        password= form.password.data
-        REGISTERED_USERS[email] ={
-            'name':full_name,
-            'password':password
-        }
-        return f'Welcome {full_name}, thank you for signing up!'
+        password = form.password.data
+
+        user = User(firstName, lastName, email, password)
+
+        db.session.add(user)
+        db.session.commit()
+
+        flash(f'Thank you for signing up {firstName}!', 'success')
+        return redirect(url_for('login'))
     else:
         return render_template('signup.html', form=form)
+    
+@app.route ('/logout')
+@login_required
+def logout():
+        flash('Successfully logged out', 'warning')
+        logout_user()
+        return redirect(url_for('login'))

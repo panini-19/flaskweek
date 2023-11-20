@@ -1,10 +1,13 @@
 {% extends 'base.html'%}
-
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/login.css">
+{% endblock %}
 {% block title %}
 Trainer Home
 {% endblock %}
 
 {% block content %}
 {% include './includes/nav.html' %}
-<h1> Welcome to the Pokemon selector! </h1>
+<h1 style="text-align:center"> Welcome to the Pokemon selector! </h1>
+<img class="mx-auto d-block capt-pika" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fe8e6ab4-bc07-4932-bca4-17e2d7594645/dfq8aak-41b8e226-68c0-48fd-8ea8-7333a0fcb0a0.png/v1/fill/w_1280,h_1080/captain_pikachu___the_new_pokemon_anime_by_rubychu96_dfq8aak-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA4MCIsInBhdGgiOiJcL2ZcL2ZlOGU2YWI0LWJjMDctNDkzMi1iY2E0LTE3ZTJkNzU5NDY0NVwvZGZxOGFhay00MWI4ZTIyNi02OGMwLTQ4ZmQtOGVhOC03MzMzYTBmY2IwYTAucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.DV4pDVVwQQwvM-KUAI9-W1tWm_WC1fGAi_uxxiDw0aE">
 {% endblock %}

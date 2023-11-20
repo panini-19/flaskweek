@@ -2,14 +2,11 @@
 
 {% block styles %}
 <link rel="stylesheet" href="../static/styles/login.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300&family=Roboto:wght@300&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 {% include './includes/nav.html' %}
-<img class="mx-auto d-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png" alt="pokemon logo">
+<img class="mx-auto d-block poke-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png" alt="pokemon logo">
 <h1 class="text-center"> Sign Up </h1>
 <form method="POST" class=" mx-auto w-25 d-block shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     {{ form.hidden_tag() }}
