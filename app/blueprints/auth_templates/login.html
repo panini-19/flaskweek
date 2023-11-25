@@ -20,7 +20,9 @@
       {{ form.password(class="form-control password-input", id="password")}}
     </div>
     {{ form.submitButton (class="login-btn btn-primary")}}
+    <div>
+      <a href="{{url_for('auth.signup')}}">Don't have an account? Sign up!</a>
+    </div>
   </form>
-
 
 {% endblock %}

@@ -10,20 +10,20 @@
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
                     {{ current_user.first_name }}
-                    <a class="nav-link " aria-current="page" href="{{url_for('logout')}}">Logout</a>
+                    <a class="nav-link " aria-current="page" href="{{url_for('auth.logout')}}">Logout</a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="{{url_for('homePage')}}">Home</a>
+                    <a class="nav-link " aria-current="page" href="{{url_for('poke.homePage')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('poke_form')}}"> Create Your Team</a>
+                    <a class="nav-link" href="{{url_for('poke.poke_form')}}"> Create Your Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('signup')}}">Create An Account</a>
+                    <a class="nav-link" href="{{url_for('auth.signup')}}">Create An Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('login')}}">Returning Users</a>
+                    <a class="nav-link" href="{{url_for('auth.login')}}">Returning Users</a>
                 </li>
             
             </ul>
