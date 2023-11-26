@@ -15,8 +15,8 @@ def login():
         queried_user = User.query.filter(User.email ==email).first()
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
-            flash(f'Hello, {queried_user.firstName}!', 'success')
-            return redirect(url_for('homePage'))
+            flash(f'Hello, {queried_user.first_name}!', 'success')
+            return redirect(url_for('poke.homePage'))
         else:
             return 'Invalid email or password'
     else:

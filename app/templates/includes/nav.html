@@ -9,23 +9,23 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    {{ current_user.first_name }}
-                    <a class="nav-link " aria-current="page" href="{{url_for('auth.logout')}}">Logout</a>
+                    <span class="navbar-text mr-2">{{ current_user.firstName }}</span>
+                    <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
                 </li>
-                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="{{url_for('poke.homePage')}}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('poke.poke_form')}}"> Create Your Team</a>
                 </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.signup')}}">Create An Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.login')}}">Returning Users</a>
                 </li>
-            
+                {% endif %}
             </ul>
         </div>
     </div>
